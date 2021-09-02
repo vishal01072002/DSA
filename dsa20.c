@@ -35,7 +35,7 @@ void enqueueR(struct queue *q, int val)
 {
     if (isfull(q))
     {
-        printf("queue is full \n");
+        printf("queue is full  \n");
     }
     else
     {
