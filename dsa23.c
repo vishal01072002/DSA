@@ -1,30 +1,37 @@
-#include<stdio.h>
+/* selection sorting algorithim */
 
-void printArray(int* A, int n){
+#include <stdio.h>
+#include <conio.h>
+
+void printarray(int *array, int n)
+{
     for (int i = 0; i < n; i++)
     {
-        printf("%d ", A[i]);
+        printf("%d  ", array[i]);
     }
     printf("\n");
 }
 
-void insertionSort(int *A, int n){
-    int key, j;
-    // Loop for passes
-    for (int i = 1; i <= n-1; i++)
+void insertionsort(int *arr, int size)
+{
+    for (int i = 1; i <= size - 1; i++)
+    //need size-1 pass
+    //we have compare sort array "0" to next "0+1" index number
     {
-        key = A[i];
-        j = i-1;
-        // Loop for each pass
-        while(j>=0 && A[j] < key){
-            A[j+1] = A[j];
+        int num = arr[i]; //take num which have to insert in shorted array
+        int j = i - 1;    //start compare from previous number (of shorted array) from int num or "i"
+        while (j >= 0 && arr[j] > num)
+        {
+            arr[j + 1] = arr[j];
             j--;
         }
-        A[j+1] = key;
+        arr[j + 1] = num; // coz j-- we put key in j+1
     }
 }
 
-int main(){
+void main()
+{
+    // only for example
    // -1   0    1   2   3   4   5
    //      12,| 54, 65, 07, 23, 09 --> i=1, key=54, j=0
    //      12,| 54, 65, 07, 23, 09 --> 1st pass done (i=1)!
@@ -44,11 +51,10 @@ int main(){
 
    //      07, 12, 23, 54, 65,| 09 --> i=5, key=09, j=4
    //      07, 09, 12, 23, 54, 65| --> After the 5th pass 
-    
-    int A[] = {12, 54, 65, 7, 23, 9};
-    int n = 6;
-    printArray(A, n);
-    insertionSort(A, n);
-    printArray(A, n);
-    return 0;
+
+    int size = 6;
+    int array[6] = {12, 4, 7, 9, 11, 33};
+    printarray(array, size);
+    insertionsort(array, size);
+    printarray(array, size);
 }
