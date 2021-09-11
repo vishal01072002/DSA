@@ -20,7 +20,7 @@ void selectionsort(int *arr, int n)
         minvalueindx = i;
         for (int j = i + 1; j < n; j++) //coz we start compare from next
         {
-            if (arr[j] < arr[minvalueindx]) //if we get small then minvalindex so update that
+            if (arr[j] < arr[minvalueindx]) //if we get small so update that minvalindex
             {
                 minvalueindx = j;
             }
