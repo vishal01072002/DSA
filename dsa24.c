@@ -1,4 +1,4 @@
-/* selection sorting algorithim */
+/* quicksort algorithim */
 
 #include <stdio.h>
 #include <conio.h>

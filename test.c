@@ -1,6 +1,7 @@
-#include<stdio.h>
+#include <stdio.h>
 
-void printArray(int* A, int n){
+void printArray(int *A, int n)
+{
     for (int i = 0; i < n; i++)
     {
         printf("%d ", A[i]);
@@ -8,47 +9,64 @@ void printArray(int* A, int n){
     printf("\n");
 }
 
-void insertionSort(int *A, int n){
-    int key, j;
-    // Loop for passes
-    for (int i = 1; i <= n-1; i++)
+void merge(int A[], int mid, int low, int high)
+{
+    int i, j, k, B[100];
+    i = low;
+    j = mid + 1;
+    k = low;
+
+    while (i <= mid && j <= high)
     {
-        key = A[i];
-        j = i-1;
-        // Loop for each pass
-        while(j>=0 && A[j] < key){
-            A[j+1] = A[j];
-            j--;
+        if (A[i] < A[j])
+        {
+            B[k] = A[i];
+            i++;
+            k++;
         }
-        A[j+1] = key;
+        else
+        {
+            B[k] = A[j];
+            j++;
+            k++;
+        }
+    }
+    while (i <= mid)
+    {
+        B[k] = A[i];
+        k++;
+        i++;
+    }
+    while (j <= high)
+    {
+        B[k] = A[j];
+        k++;
+        j++;
+    }
+    for (int i = low; i <= high; i++)
+    {
+        A[i] = B[i];
+    }
+    
+}
+
+void mergeSort(int A[], int low, int high){
+    int mid; 
+    if(low<high){
+        mid = (low + high) /2;
+        mergeSort(A, low, mid);
+        mergeSort(A, mid+1, high);
+        merge(A, mid, low, high);
     }
 }
 
-int main(){
-   // -1   0    1   2   3   4   5
-   //      12,| 54, 65, 07, 23, 09 --> i=1, key=54, j=0
-   //      12,| 54, 65, 07, 23, 09 --> 1st pass done (i=1)!
-
-   //      12, 54,| 65, 07, 23, 09 --> i=2, key=65, j=1
-   //      12, 54,| 65, 07, 23, 09 --> 2nd pass done (i=2)!
-
-   //      12, 54, 65,| 07, 23, 09 --> i=3, key=7, j=2
-   //      12, 54, 65,| 65, 23, 09 --> i=3, key=7, j=1
-   //      12, 54, 54,| 65, 23, 09 --> i=3, key=7, j=0
-   //      12, 12, 54,| 65, 23, 09 --> i=3, key=7, j=-1
-   //      07, 12, 54,| 65, 23, 09 --> i=3, key=7, j=-1--> 3rd pass done (i=3)!
-
-   // Fast forwarding and 4th and 5th pass will give:
-   //      07, 12, 54, 65,| 23, 09 --> i=4, key=23, j=3
-   //      07, 12, 23, 54,| 65, 09 --> After the 4th pass
-
-   //      07, 12, 23, 54, 65,| 09 --> i=5, key=09, j=4
-   //      07, 09, 12, 23, 54, 65| --> After the 5th pass 
-    
-    int A[] = {12, 54, 65, 7, 23, 9};
-    int n = 6;
+int main()
+{
+    // int A[] = {9, 14, 4, 8, 7, 5, 6};
+    int A[] = {9, 1, 4, 14, 4, 15, 6};
+    int n = 7;
     printArray(A, n);
-    insertionSort(A, n);
+    mergeSort(A, 0, 6);
     printArray(A, n);
     return 0;
 }
