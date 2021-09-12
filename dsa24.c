@@ -61,7 +61,7 @@ void quicksort(int arr[], int low, int high)
         //first we sort all left array then divide in array and then thats left array and so on.
 
         quicksort(arr, partitonindex + 1, high);
-        //.........first we sort all right array then divide in array and then thats left array and so on.
+        //after solve left array we sort all right array then divide in array and then thats left array and so on.
     }
 }
 
