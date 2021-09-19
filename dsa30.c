@@ -40,7 +40,7 @@ void insert(struct node *root, int key)
         prev = root; //coz we need prev adress to store left and right element
         if (root->data == key)
         {
-            printf("no space for %d\n",key);
+            printf("no space for %d\n", key);
             return; //coz same element can not insert in BST
         }
         // else update the value of root
@@ -57,15 +57,15 @@ void insert(struct node *root, int key)
     struct node *new = createnode(key);
     if (key < prev->data)
     {
-       // printf("left prev new%d\n", prev->data);
+        // printf("left prev new%d\n", prev->data);
         prev->left = new;
-       // printf("left new%d\n", new->data);
+        // printf("left new%d\n", new->data);
     }
     else
     {
-       // printf("right prev new%d\n", prev->data);
+        // printf("right prev new%d\n", prev->data);
         prev->right = new;
-       // printf("right new%d\n", new->data);
+        // printf("right new%d\n", new->data);
     }
 }
 
