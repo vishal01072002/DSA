@@ -1,4 +1,4 @@
-/* insert in binary search tree (BST) */
+/* delete in binary search tree (BST) */
 
 #include <stdio.h>
 #include <conio.h>
